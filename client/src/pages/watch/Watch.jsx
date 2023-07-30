@@ -1,30 +1,27 @@
+import React from "react";
 import { ArrowBackOutlined } from "@material-ui/icons";
+import { Link, useLocation } from "react-router-dom";
 import "./watch.scss";
 
-export default function Watch() {
+const Watch = () => {
+  const location = useLocation();
+  const movie = location.state?.data || 'Default Value';
+
+
+  console.log(movie)
+
   return (
     <div className="watch">
-      <div className="back">
-        <ArrowBackOutlined />
-        Home
-      </div>
-      {/* <video
-        className="video"
-        autoPlay
-        progress
-        controls
-        src="https://youtu.be/2unNl9orV3c"
-      /> */}
+      <Link to="/">
+        <div className="back">
+          <ArrowBackOutlined />
+          Home
+        </div>
+      </Link>
+      <video className="video" autoPlay progress controls src={movie.trailer} />
 
-      <iframe
-        width="100%"
-        height="100%"
-        src="https://www.youtube.com/embed/qEVUtrk8_B4"
-        title="John Wick: Chapter 4 (2023 Movie) Official Trailer – Keanu Reeves, Donnie Yen, Bill Skarsgård"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen
-      ></iframe>
     </div>
   );
-}
+};
+
+export default Watch;
